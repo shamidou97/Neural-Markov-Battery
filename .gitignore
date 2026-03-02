@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+venv/
+.env
+
+# Data & Models (Keep your structure but ignore the actual large files)
+data/raw/
+data/processed/*.npy
+models/*.pth
+
+# OS
+.DS_Store
+Thumbs.db
