@@ -1,3 +1,17 @@
+### 🔬 Technical Abstract: Non-Homogeneous DTMC for Battery Prognostics
+
+This project implements a **Physics-informed Neural-Markov Network** to model the non-linear degradation of Lithium-ion batteries under high-stress (3C) discharge cycles. Unlike standard regression models, this approach treats State-of-Health (SOH) as a sequence of discrete stochastic transitions within a **Discrete-Time Markov Chain (DTMC)**.
+
+**Key Mathematical Framework:**
+* **State Space ($\mathcal{S}$)**: Health is discretized into 4 states ($S_0$ to $S_3$), where $S_3$ represents the critical failure threshold.
+* **Transition Probability Matrix ($P$)**: Rather than using static probabilities, the model employs a **Neural Network** to dynamically estimate transition likelihoods based on a 5-dimensional feature vector ($V_{avg}$, $I_{avg}$, $T_{max}$, $Ah$, and Cycle Age).
+* **Non-Homogeneity**: The system is non-homogeneous, meaning the transition probabilities evolve as a function of the battery's electrochemical age and stress history.
+* **Optimization**: The `NeuralMarkovNet` (2,596 parameters) was trained using a custom Cross-Entropy loss function to maximize the likelihood of observed state sequences in the **XJTU-SY dataset**.
+
+
+
+**Results**: The framework achieves **99% accuracy** in state classification and demonstrates a **100% recall rate** for the "S3" failure state, providing a robust early-warning system for Battery Management Systems (BMS).
+
 # Neural-Markov Battery Forecasting (XJTU-SY Dataset)
 
 ## 📖 Project Overview
@@ -44,4 +58,5 @@ DTMC/
 └── src/                # Core Python implementation
     ├── model.py        # PyTorch Model (2,596 parameters)
     ├── train.py        # Training pipeline
+
     └── evaluate_performance.py # Final validation script
