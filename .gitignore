@@ -13,3 +13,4 @@ models/*.pth
 # OS
 .DS_Store
 Thumbs.db
+models/*.json
